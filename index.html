@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自闭症科普与干预 - 关爱与希望</title>
+    <style>
+        :root {
+            --primary-color: #7EB2EA;
+            --secondary-color: #8BC0A4;
+            --text-color: #333333;
+            --background-color: #FCF5ED;
+            --accent-color: #FCF5ED;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            font-size: 16px;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+    
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+    
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+    
+        .logo-text {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+    
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+    
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem;
+            transition: color 0.3s;
+        }
+    
+        nav a:hover {
+            color: var(--primary-color);
+        }
+    
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            margin-top: 70px;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+    
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+    
+        .carousel-slide.active {
+            opacity: 1;
+        }
+    
+        .carousel-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .carousel-slide img {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+    
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+    
+        .carousel-caption h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+    
+        .carousel-caption p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 1.5rem 1rem;
+            cursor: pointer;
+            border: none;
+            z-index: 100;
+            transition: background 0.3s;
+            font-size: 1.5rem;
+        }
+    
+        .carousel-btn:hover {
+            background: rgba(0,0,0,0.7);
+        }
+    
+        .carousel-btn.prev {
+            left: 10px;
+        }
+    
+        .carousel-btn.next {
+            right: 10px;
+        }
+    
+        .carousel-indicators {
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 100;
+        }
+    
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+    
+        .indicator.active {
+            background: white;
+        }
+    
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+    
+        .section {
+            margin: 6rem 0;
+            padding: 3rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    
+        .intro-grid {
+            display: flex;
+            gap: 2rem;
+        }
+    
+        .intro-content {
+            flex: 1;
+        }
+    
+        .intro-stats {
+            display: flex;
+            gap: 1rem;
+        }
+    
+        .stat-card {
+            flex: 1;
+            text-align: center;
+            padding: 2.5rem;
+        }
+    
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+    
+        .stat-description {
+            font-size: 1.2rem;
+        }
+    
+        .info-boxes {
+            display: flex;
+            gap: 1rem;
+        }
+    
+        .info-box {
+            flex: 1;
+            padding: 2.5rem;
+            background: var(--accent-color);
+            border-radius: 5px;
+        }
+    
+        .info-box h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+    
+        .info-box ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+    
+        .info-box li {
+            font-size: 1.1rem;
+            margin: 1rem 0;
+        }
+    
+        .section-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 4rem;
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+    
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+            margin: 1rem auto;
+        }
+    
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+    
+        .intro-content h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+    
+        .intro-content p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            margin-bottom: 2.5rem;
+        }
+    
+        .key-points {
+            background: var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+    
+        .key-points h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+    
+        .key-points ul {
+            list-style: none;
+        }
+    
+        .key-points li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+    
+        .key-points li::before {
+            content: '•';
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+        }
+    
+        .intro-stats {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+    
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+    
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+    
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    
+        .stat-description {
+            color: var(--text-color);
+            font-size: 1.1rem;
+        }
+    
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+    
+        .info-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    
+        .info-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+    
+        .info-box ul {
+            list-style: none;
+        }
+    
+        .info-box li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+    
+        .info-box li::before {
+            content: '✓';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+        }
+    
+        /* 响应式设计 */
+        @media (max-width: 968px) {
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+    
+            .info-boxes {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+    
+            .intro-content h3 {
+                font-size: 1.5rem;
+            }
+    
+            .stat-number {
+                font-size: 2.5rem;
+            }
+    
+            .carousel-container {
+                height: 400px;
+            }
+    
+            .carousel-caption h2 {
+                font-size: 1.5rem;
+            }
+    
+            .carousel-caption p {
+                font-size: 1rem;
+            }
+        }
+    
+        .symptoms-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    
+        .symptoms-tabs {
+            display: flex;
+            background: var(--accent-color);
+            padding: 1rem;
+            gap: 1rem;
+            overflow-x: auto;
+        }
+    
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+    
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+    
+        .tab-content {
+            display: none;
+            padding: 2rem;
+        }
+    
+        .tab-content.active {
+            display: block;
+        }
+    
+        .symptom-card {
+            background: white;
+            border-radius: 8px;
+        }
+    
+        .symptom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+    
+        .symptom-item {
+            padding: 2rem;
+            background: var(--accent-color);
+            border-radius: 8px;
+        }
+    
+        .symptom-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+        }
+    
+        .symptom-item ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+    
+        .symptom-item li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+    
+        .symptom-item li::before {
+            content: '•';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+        }
+    
+        .behavior-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+    
+        .behavior-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--accent-color);
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+    
+        .behavior-item:hover {
+            transform: translateY(-5px);
+        }
+    
+        .behavior-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+    
+        .diagnosis-steps {
+            margin-top: 2rem;
+        }
+    
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 1.5rem;
+        }
+    
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+    
+        .step-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+    
+        @media (max-width: 768px) {
+            .symptoms-tabs {
+                flex-wrap: wrap;
+            }
+    
+            .tab-btn {
+                flex: 1 1 calc(50% - 1rem);
+            }
+    
+            .behavior-examples {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+        .intervention-container {
+            padding: 2rem;
+        }
+    
+        .intervention-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+    
+        .intro-text {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+    
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin: 3rem auto;
+            max-width: 1200px;
+        }
+    
+        .method-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15), 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        .method-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .method-content ul {
+            flex: 1;
+            margin: 1.5rem 0;
+        }
+    
+        .method-note {
+            margin-top: auto;
+            background: var(--accent-color);
+            padding: 1.2rem;
+            border-radius: 8px;
+        }
+    
+        @media (max-width: 1200px) {
+            .methods-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 0 2rem;
+            }
+        }
+    
+        @media (max-width: 768px) {
+            .methods-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+        .method-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+    
+        .method-card h3 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+    
+        .method-content h4 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+    
+        .method-content ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+    
+        .method-content li {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+    
+        .method-content li::before {
+            content: '→';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+        }
+    
+        .method-note {
+            background: var(--accent-color);
+            padding: 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+    
+        .method-note p {
+            margin: 0.5rem 0;
+        }
+    
+        .related-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+    
+        .related-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+    
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+    
+        .related-link {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15), 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        .related-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 15px 25px rgba(0,0,0,0.1);
+        }
+    
+        .related-link h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+        }
+    
+        .related-link p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+    
+        @media (max-width: 768px) {
+            .related-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+        .chat-section {
+            margin: 4rem 0;
+        }
+    
+        .chat-area {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+    
+        .message {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .message-content {
+            max-width: 80%;
+            padding: 1rem;
+            border-radius: 10px;
+            position: relative;
+        }
+    
+        .ai-message .message-content {
+            background: var(--accent-color);
+            align-self: flex-start;
+        }
+    
+        .user-message .message-content {
+            background: var(--primary-color);
+            color: white;
+            align-self: flex-end;
+        }
+    
+        .message-time {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+    
+        .chat-controls {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+        }
+    
+        .input-area {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+    
+        textarea {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: none;
+            font-family: inherit;
+        }
+    
+        .send-btn {
+            padding: 0.8rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+    
+        .send-btn:hover {
+            background: var(--secondary-color);
+        }
+    
+        .chat-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .action-btn {
+            padding: 0.5rem 1rem;
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+    
+        .action-btn:hover {
+            background: #f5f5f5;
+        }
+    
+        .char-count {
+            color: #666;
+            font-size: 0.9rem;
+        }
+    
+        @media (max-width: 768px) {
+            .chat-messages {
+                height: 300px;
+            }
+    
+            .input-area {
+                flex-direction: column;
+            }
+    
+            .send-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">自闭症关爱</span>
+            </div>
+            <nav>
+                <a href="#intro">自闭症介绍</a>
+                <a href="#ai-chat">智能问答</a>
+                <a href="#symptoms">症状与诊断</a>
+                <a href="#intervention">干预方法</a>
+                <a href="#related">相关网站</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="carousel-container">
+        <div class="carousel-slide active">
+            <div class="carousel-content">
+                <img src="image/1.png" alt="自闭症儿童互动场景">
+                <div class="carousel-caption">
+                    <h2>理解自闭症</h2>
+                    <p>通过专业的干预方法，帮助自闭症患者更好地融入社会</p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-slide">
+            <div class="carousel-content">
+                <img src="image/2.png" alt="专业治疗场景">
+                <div class="carousel-caption">
+                    <h2>专业干预方法</h2>
+                    <p>科学的干预方法可以显著改善自闭症患者的生活质量</p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-slide">
+            <div class="carousel-content">
+                <img src="image/3.png" alt="家庭支持场景">
+                <div class="carousel-caption">
+                    <h2>家庭支持</h2>
+                    <p>家庭的支持和理解是自闭症康复的重要基石</p>
+                </div>
+            </div>
+        </div>
+    
+        <button class="carousel-btn prev">❮</button>
+        <button class="carousel-btn next">❯</button>
+    
+        <div class="carousel-indicators">
+            <div class="indicator active"></div>
+            <div class="indicator"></div>
+            <div class="indicator"></div>
+        </div>
+    </div>
+    
+    <main>
+        <section id="intro" class="section intro-section">
+            <h2 class="section-title">认识自闭</h2>
+            
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h3>什么是自闭症？</h3>
+                    <p>自闭症谱系障碍（ASD）是一种神经发育障碍，通常在儿童早期就会显现。它会影响一个人的社交互动、沟通能力和行为方式。每个自闭症患者的表现都是独特的，症状的严重程度也不相同。</p>
+                    
+                    <div class="key-points">
+                        <h4>主要特征：</h4>
+                        <ul>
+                            <li>社交互动障碍</li>
+                            <li>语言交流困难</li>
+                            <li>重复性行为模式</li>
+                            <li>兴趣范围狭窄</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="intro-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">1/54</div>
+                        <div class="stat-description">儿童自闭症发病率</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4:1</div>
+                        <div class="stat-description">男女患病比例</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">早期</div>
+                        <div class="stat-description">最佳干预时间</div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="info-boxes">
+                <div class="info-box">
+                    <h4>早期迹象</h4>
+                    <ul>
+                        <li>很少进行眼神交流</li>
+                        <li>对名字呼唤反应迟钝</li>
+                        <li>不会模仿他人的表情和动作</li>
+                        <li>语言发展迟缓</li>
+                    </ul>
+                </div>
+                
+                <div class="info-box">
+                    <h4>及时干预的重要性</h4>
+                    <p>研究表明，早期发现和干预对自闭症儿童的发展至关重要。及时的干预可以：</p>
+                    <ul>
+                        <li>提升社交互动能力</li>
+                        <li>增强语言表达能力</li>
+                        <li>减少问题行为</li>
+                        <li>提高学习能力</li>
+                    </ul>
+                </div>
+                
+                <div class="info-box">
+                    <h4>常见误解</h4>
+                    <ul>
+                        <li>自闭症不是心理疾病</li>
+                        <li>自闭症患者并非缺乏感情</li>
+                        <li>自闭症不是教育问题导致的</li>
+                        <li>自闭症患者可以通过预改善</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    
+        <section id="ai-chat" class="section chat-section">
+            <h2 class="section-title">智能问答</h2>
+            
+            <div class="chat-area">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message ai-message">
+                        <div class="message-content">
+                            <p>您好！我是自闭症关爱智能助手。我可以为您解答关于自闭症的相关问题，包括症状识别、早期干预、康复训练等方面的咨询。请问您想了解什么？</p>
+                            <span class="message-time">现在</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-controls">
+                    <div class="input-area">
+                        <textarea 
+                            id="messageInput" 
+                            placeholder="请输入您想了解的自闭症相关问题..." 
+                            rows="3"
+                            maxlength="500"
+                        ></textarea>
+                        <button id="sendMessage" class="send-btn">
+                            发送
+                        </button>
+                    </div>
+                    <div class="chat-actions">
+                        <button id="clearHistory" class="action-btn">清除对话</button>
+                        <span class="char-count">0/500</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="symptoms" class="section symptoms-section">
+            <h2 class="section-title">症状与诊断</h2>
+            
+            <div class="symptoms-container">
+                <div class="symptoms-tabs">
+                    <button class="tab-btn active" data-tab="social">社交行为</button>
+                    <button class="tab-btn" data-tab="communication">沟通能力</button>
+                    <button class="tab-btn" data-tab="behavior">行为模式</button>
+                    <button class="tab-btn" data-tab="diagnosis">诊断方法</button>
+                </div>
+    
+                <div class="symptoms-content">
+                    <div class="tab-content active" id="social">
+                        <div class="symptom-card">
+                            <h3>社交互动障碍</h3>
+                            <div class="symptom-grid">
+                                <div class="symptom-item">
+                                    <h4>眼神接触</h4>
+                                    <p>难以建立维持适当的眼神接触</p>
+                                    <ul>
+                                        <li>回避他人目光</li>
+                                        <li>视线飘忽不定</li>
+                                        <li>对视时间明显短于常人</li>
+                                    </ul>
+                                </div>
+                                <div class="symptom-item">
+                                    <h4>情感表达</h4>
+                                    <p>难以理解和表达情感</p>
+                                    <ul>
+                                        <li>面部表情较为单一</li>
+                                        <li>难以识别和理解他人的情绪变化</li>
+                                        <li>情感表达方式可能与场合不相符</li>
+                                    </ul>
+                                </div>
+                                <div class="symptom-item">
+                                    <h4>社交互动</h4>
+                                    <p>社交技能发展迟缓</p>
+                                    <ul>
+                                        <li>缺乏对话中的互动意识</li>
+                                        <li>难以参与集体活动</li>
+                                        <li>缺乏与他人互动的主动性</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="tab-content" id="communication">
+                        <div class="symptom-card">
+                            <h3>语与沟通障碍</h3>
+                            <div class="communication-grid">
+                                <div class="communication-type">
+                                    <h4>语言发展</h4>
+                                    <ul>
+                                        <li>语言发展迟缓或倒退</li>
+                                        <li>词汇量有限或重复使用特定词语</li>
+                                        <li>语言理解能力受限</li>
+                                    </ul>
+                                </div>
+                                <div class="communication-type">
+                                    <h4>非语言沟通</h4>
+                                    <ul>
+                                        <li>很少使用手势语言</li>
+                                        <li>难以理解身体语言</li>
+                                        <li>面部表情表达较少</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="tab-content" id="behavior">
+                        <div class="symptom-card">
+                            <h3>行为特征</h3>
+                            <div class="behavior-examples">
+                                <div class="behavior-item">
+                                    <span class="behavior-icon">🔄</span>
+                                    <h4>重复性行为</h4>
+                                    <p>反复做某些特定动作或固定程序的行为</p>
+                                </div>
+                                <div class="behavior-item">
+                                    <span class="behavior-icon">🎯</span>
+                                    <h4>固定兴趣</h4>
+                                    <p>对特定物品或话题表现出强烈的兴趣</p>
+                                </div>
+                                <div class="behavior-item">
+                                    <span class="behavior-icon">⚡</span>
+                                    <h4>感官反应</h4>
+                                    <p>对声音、触摸等感官刺激反应异常</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="tab-content" id="diagnosis">
+                        <div class="symptom-card">
+                            <h3>诊断流程</h3>
+                            <div class="diagnosis-steps">
+                                <div class="step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>早期筛查</h4>
+                                        <p>通过行为观察和发展评估进行初步筛查</p>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>专业评估</h4>
+                                        <p>由专业医生进行全面的临床评估</p>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>多学科诊断</h4>
+                                        <p>结合多个专业领域的评估结果</p>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>制定方案</h4>
+                                        <p>根据诊断结果制定个性化干预方案</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="intervention" class="section intervention-section">
+            <h2 class="section-title">干预方法</h2>
+            
+            <div class="intervention-container">
+                <div class="intervention-intro">
+                    <p class="intro-text">自闭症的干预需要采用综合性的方法，针对不同的症和个体特点，制定个性化的干预计划。以下是几种主要的干预方法：</p>
+                </div>
+    
+                <div class="methods-grid">
+                    <div class="method-card">
+                        <div class="method-icon">👥</div>
+                        <h3>行为干预</h3>
+                        <div class="method-content">
+                            <h4>应用行为分析(ABA)</h4>
+                            <ul>
+                                <li>有计划地教导孩子学合适的行为方式</li>
+                                <li>运用正向强化原理培养良好习惯</li>
+                                <li>将复杂技能分解为简单步骤教学</li>
+                                <li>持续评估进展并调整教学策略</li>
+                            </ul>
+                            <div class="method-note">
+                                <p>推荐年龄：2-12岁</p>
+                                <p>干预频率：每周20-40小时</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="method-card">
+                        <div class="method-icon">🗣️</div>
+                        <h3>语言治疗</h3>
+                        <div class="method-content">
+                            <h4>语言和沟通能力干预</h4>
+                            <ul>
+                                <li>培养语言表达和需求表达能力</li>
+                                <li>提升语言理解和接收能力</li>
+                                <li>培养社交对话和互动能力</li>
+                                <li>学习使用辅助沟通方式</li>
+                            </ul>
+                            <div class="method-note">
+                                <p>推荐年龄：所有年龄段</p>
+                                <p>干预频率：每周2-3次</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="method-card">
+                        <div class="method-icon">🎨</div>
+                        <h3>感觉统合</h3>
+                        <div class="method-content">
+                            <h4>感觉能力训练</h4>
+                            <ul>
+                                <li>提升对各类感觉刺激的适应能力</li>
+                                <li>增强身体协调性和平衡力</li>
+                                <li>改善大脑对感觉信息的处理和整合能力</li>
+                                <li>培养日常生活的独立能力</li>
+                            </ul>
+                            <div class="method-note">
+                                <p>推荐年龄：3-12岁</p>
+                                <p>干预频率：每周1-2次</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="related" class="section related-section">
+            <h2 class="section-title">相关网站</h2>
+            
+            <div class="related-container">
+                <div class="related-intro">
+                    <p class="intro-text">以下是一些提供自闭症相关资源和支持的专业网站，供您参考：</p>
+                </div>
+                
+                <div class="related-links">
+                    <a href="http://www.zibizhengwang.cn" target="_blank" class="related-link">
+                        <h3>自闭症儿童网</h3>
+                        <p>专注于为自闭症儿童及其家庭提供全面支持和资源的专业平台，包括症状解读、诊断方法、治疗进展等专业信息</p>
+                    </a>
+    
+                    <a href="http://www.xmxzbz.com" target="_blank" class="related-link">
+                        <h3>孤独症（自闭症）康复网</h3>
+                        <p>提供康复信息、训练技巧和专家建议，分享成功案例和康复经验</p>
+                    </a>
+    
+                    <a href="https://www.alsolife.com/" target="_blank" class="related-link">
+                        <h3>ALSOLIFE-中国自闭症评估干预平台</h3>
+                        <p>提供在线评估、个性化教学计划及家居训练指导，包含免费的评估工具和新家长入门知识</p>
+                    </a>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script type="module" src="js/carousel.js"></script>
+</body>
+</html> 
